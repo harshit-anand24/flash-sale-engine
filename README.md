@@ -60,26 +60,35 @@ Redis Server (Running on default port 6379)
 MySQL Server (Running on default port 3306)
 
 1. Database Setup
+
 Log into your MySQL interface and initialize the schema shell container:
 
 CREATE DATABASE flash_sale;
 
 2. Environment Installation
+
 Clone the repository and install dependencies:
 
 git clone https://github.com/YOUR_GITHUB_USERNAME/flash-sale-engine.git
+
 cd flash-sale-engine
+
 pip install fastapi uvicorn sqlalchemy pymysql redis locust
 
 3. Running the Server Engine
+
 Navigate to the source workspace and spin up the multi-worker deployment:
 
 cd app
+
 python main.py
+
 The server will initialize your 500 stock tokens inside Redis and mount Uvicorn workers on http://127.0.0.1:8000.
 
 4. Running the Traffic Swarm
+
 Open a secondary terminal workspace and launch the simulation panel:
 
 locust -f locustfile.py --host=http://127.0.0.1:8000
+
 Navigate to http://localhost:8089 inside your web browser, configure your concurrency spikes, and start swarming.
